@@ -16,7 +16,9 @@ def process_args():
 
 def main():
     args = process_args()
-    dest_dir = Path(f"{args.dest}")
+    dest_dir = Path(f"{args.dest}/{args.model}")
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    
 
     # downloads *only* the files you list in allow_patterns
     snapshot_download(
