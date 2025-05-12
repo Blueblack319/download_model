@@ -17,18 +17,13 @@ def process_args():
 def main():
     args = process_args()
     dest_dir = Path(f"{args.dest}")
-    
-    n_cpus = os.cpu_count()               # logical cores on the machine
-    print(f"Using {n_cpus} parallel workers")
-    used_cpus = n_cpus - 4
-
 
     # downloads *only* the files you list in allow_patterns
     snapshot_download(
         repo_id=f"deepseek-ai/{args.model}",
         local_dir=dest_dir,
         resume_download=True,      # continue an interrupted run
-        max_workers=used_cpus           # parallel downloads
+        max_workers=8           # parallel downloads
     )
 
 
